@@ -1,0 +1,34 @@
+<p style="color: green"><%= notice %></p>
+
+<body data-controller="countdown">
+
+  <h1>Arrival Information</h1>
+
+  <p><strong>Current Time:</strong> <%= @arrival[:current_time] %></p>
+
+  <h2>ETA Information</h2>
+  <ul data-target="countdown.list">
+    <% @arrival[:eta].each do |eta| %>
+      <li>
+        <strong>Station:</strong> <%= eta[:station_name] %><br>
+        <strong>Route:</strong> <%= eta[:route_id] %><br>
+        <strong>Destination:</strong> <%= eta[:destination_name] %><br>
+        <strong>Arrival Time:</strong> <%= eta[:arrival_time] %><br>
+        <strong>Prediction Generated:</strong> <%= eta[:prediction_generated] %><br>
+        <strong>Formatted Time</strong> <%= eta[:formatted_arrival_time ] %><br>
+        <strong>Time Remaining:</strong> <span data-target="countdown.time" data-arrival-time="<%= Time.parse(eta[:formatted_arrival_time ]) %>"></span><br>
+        <!-- Add more attributes as needed -->
+      </li>
+    <% end %>
+  </ul>
+
+</body>
+
+<!--
+<div>
+  <%= link_to "Edit this arrival", edit_arrival_path(@arrival) %> |
+  <%= link_to "Back to arrivals", arrivals_path %>
+
+  <%= button_to "Destroy this arrival", @arrival, method: :delete %>
+</div>
+-->
